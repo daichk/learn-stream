@@ -1,0 +1,17 @@
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: input
+          group: learn-stream
+          consumer:
+            maxAttempts: 2
+      rabbit:
+        bindings:
+          input:
+            consumer:
+              deadLetterExchange: learn-stream.DLX
+              auto-bind-dlq: true
+              republish-to-dlq: true
